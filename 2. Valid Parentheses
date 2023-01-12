@@ -1,0 +1,23 @@
+class Solution {
+public:
+    unordered_map<char,int> val = {{'{',-1},{'[',-2},{'(',-3},{'}',1},{']',2},{')',3}};
+    bool isValid(string s) {
+        stack<char>st;
+        for(auto x:s)
+        {
+            if(val[x]<0)
+            {
+                st.push(x);
+            }
+            else
+            {
+                if(st.empty()) return false;
+                char top = st.top();
+                st.pop();
+                if(val[top]+val[x] != 0) return false;
+            }
+        }
+        if(st.empty()) return true;
+        return false;
+    };
+};
